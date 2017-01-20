@@ -65,6 +65,7 @@ Part.prototype.frame = function frame() {
   }
 
   //off_dx, off_dy = offset distance x, y
+  //distance from resting position
   var off_dx = this.ind_x * w - this.x;
   var off_dy = this.ind_y * h - this.y;
 
@@ -223,7 +224,7 @@ function run() {
 
       timeStack.push(Date.now())
       accelerationStack.push(p.ax)
-
+      console.log(controlVariables)
       if(timeStack.length > timepoints) {
         timeStack.shift()
         accelerationStack.shift()
@@ -244,17 +245,6 @@ function run() {
       contextAcc.translate(-canvasAcc.width/2, -canvasAcc.height/2)
 
 
-      // this.x
-      // this.y
-      // this.ax
-      // this.ay
-      // this.vx
-      // this.vy
-      // this.ind_x
-      // this.ind_y
-      // this.displacement
-      // this.off_dx
-      // this.off_dy
 
       displayText()
     }

@@ -12,13 +12,16 @@
     </style>
 </head>
 <body>
-
-<canvas id="canv-one" width="1200" height="600"></canvas>
-<canvas id="canv-acc" width="300" height="300"></canvas>
+  <div id="canvases">
+    <canvas id="canv-one" width="1200" height="600"></canvas>
+    <canvas id="canv-acc" width="300" height="300"></canvas>
+  </div>
 <p id='values'></p>
 </body>
 
+<script src="appendcanvases.js"></script>
 <script src="deli_one.js"></script>
+
 <script>
 var values = document.getElementById('values')
 values.innerHTML = "HELLO"
