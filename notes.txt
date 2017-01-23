@@ -38,7 +38,9 @@ I wanna know how she did that
 This is your part.
 
 What's happening here?
-
+--
+Point is pulled by mouse
+Each point is pulled on by its neighbors, the net difference is used to calculate
 --
 Tiffany's file shows experimentation
 In mine all the variables have been renamed,

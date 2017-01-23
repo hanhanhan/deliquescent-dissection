@@ -88,6 +88,7 @@
     context.moveTo(neighbor.x, neighbor.y)
     context.lineTo(pulledPart.x, pulledPart.y)
     context.stroke()
+
   }
 
   var neighbors = []
@@ -131,13 +132,22 @@
     context.fill()
     context.stroke()
 
-
     // calculate pull
     xPull = neighbors[0].x + neighbors[1].x + neighbors[2].x + neighbors[3].x - pulledPart.x * 4
     yPull = neighbors[0].y + neighbors[1].y + neighbors[2].y + neighbors[3].y - pulledPart.y * 4
 
     xPullValue.value = xPull
     yPullValue.value = yPull
+
+    // draw result vector
+    context.fillStyle = 'red'
+    context.strokeStyle = 'red'
+    context.beginPath()
+    context.moveTo(pulledPart.x, pulledPart.y)
+    context.lineTo(pulledPart.x + xPull, pulledPart.y + yPull)
+    context.lineTo(pulledPart.x + xPull, pulledPart.y)
+    context.lineTo(pulledPart.x, pulledPart.y)
+    context.stroke()
 
     window.requestAnimationFrame(animate)
   }
