@@ -1,0 +1,64 @@
+Make business cards - pixel profile image?
+Update github deliquescent files - math part
+update github + codepen profiles
+
+bc
+car registration payment
+hannahjlazarus email?
+
+asynchronous flow, callbacks, promises, observables, ticks, timeouts
+What is Node.js?
+non-blocking
+push capability
+Organizing code with modules and imports
+- Embracing an event loop in a single thread
+- Running code in callbacks
+- Upgrading to promises
+Intro to server-side development: the basics of ExpressJS
+Topics of the class: Node.js, NPM, ExpressJS, “package.json” files,
+dependencies, modules, the “require” function, imports, exports, code organization,
+server-side development, full-stack development, NPM scripts.
+debugger, Chrome Dev Tools, this, shadowing, scope, test runners, expectations
+
+?git guide post
+?datascience @ hack for la
+--
+
+Hi my name is Hannah Lazarus
+I've been learning javascript for about half a year
+The thing I really love about javascript is its meant for the web, which means its meant for sharing.
+
+Last Oct? I found this beautiful codepen pen by Tiffany Rayside.
+She named Deliquescent.
+
+She's made all these inventive pens
+But I saw this one first, and when I saw this one I was like
+I wanna know how she did that
+
+This is your part.
+
+What's happening here?
+
+--
+Tiffany's file shows experimentation
+In mine all the variables have been renamed,
+code is reorganized, equations are rearraged, some unused stuff was cut out
+except for color and lines its the exact same thing
+Github history shows transformation
+
+Endnotes:
+
+hanhanhan on github and codepen.
+I'm turning this talk into a codepen post.
+I have to leave at 8:10 :(
+
+Contact me!
+If anyone is starting learning and wants to ask me questions, I'm leaving cards with Liz.
+If anyone is done learning and/or is willing to answer my questions, please take a card.
+I'm also job curious.
+
+--------------
+
+Net pull - 4 neighbors - move neighbor points to recalculate pull
+Result position = recursive series summation
+Constants - vary values

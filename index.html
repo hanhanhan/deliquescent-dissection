@@ -5,9 +5,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/white.css" id="theme">
+		<link rel="stylesheet" href="lib/css/theme/night_dq.css" id="theme">
 		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/theme/night_dq.css">
 		<!-- Printing and PDF exports -->
 		<script>
 		var link = document.createElement( 'link' );
@@ -16,6 +16,80 @@
 		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 		document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<style>
+
+			#titlecard {
+				text-shadow: 0 0 10px black, 0 0 20px black;
+			}
+
+			.titlecard {
+				text-shadow: 0 0 10px black, 0 0 20px black;
+			}
+
+			reveal h2 {
+				padding: 1in;
+			}
+
+			.flexcontainer {
+				display: flex;
+				flex-wrap: wrap;
+				align-content: center;
+			}
+
+			.flex-row {
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				align-content: flex-start;
+				flex-wrap: nowrap;
+			}
+
+			.flex-col {
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				flex-wrap: nowrap;
+			}
+
+			.flexitem {
+				padding: 20px;
+			}
+
+			.spacer {
+				width: 5%;
+				height: 5%;
+			}
+
+			.column2{
+				width: 35%;
+				height: 600px;
+			}
+
+			iframe {
+				overflow: hidden;
+				border: 5px;
+			}
+
+
+
+/*.left {
+  /*left:-8.33%;*/
+  /*text-align: left;*/
+  /*float: left;
+  width:30%;*/
+  /*z-index:-10;*/
+}
+
+/*.right {*/
+  /*left:31.25%;*/
+  /*top: 75px;*/
+  /*float: right;*/
+  /*text-align: right;*/
+  /*z-index:-10;*/
+  /*width:30%;*/
+/*}*/
+		</style>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -26,51 +100,98 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section data-background-iframe="deli.html">
 
-					<h1>Hannah + Everyone Else <br>&#x2665; <br>Tiffany Rayside</h1>
+					<h1 id="titlecard">Everyone<br>&#x2665;
+						<br>Tiffany Rayside</h1>
+						<p class="titlecard">by Hannah Lazarus</p>
 
 				</section>
 
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 2  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
 
 					<section>
-						<iframe src="deli.html" style='frameborder: 0px; border:0px; cellspacing=0px; margin:0px;
-        					style:"border-style": none; overflow: hidden; height: 100%; width: 100%; height: 100%;'>
-        					</iframe>
-					</section>
-
-					<section>
-						<canvas id='canv' style='border: 0px; margin: 0px; padding: 0px; diplay: block; perspective: 0px' ></canvas>
+						<canvas id='canv'></canvas>
 						<script src="deliquescent.js" type="text/javascript" charset="utf-8" async defer></script>
 					</section>
 
-					<section data-background-iframe="deli.html">
-					</section>
-
 					<section>
+					<h4>Deliquescent by Tiffany Rayside</h4>
 					<p data-height="600" data-theme-id="0" data-slug-hash="OPZKNd" data-default-tab="js,result" data-user="tmrDevelops" data-embed-version="2" data-pen-title="deliquescent" class="codepen">See the Pen <a href="https://codepen.io/tmrDevelops/pen/OPZKNd/">deliquescent</a> by Tiffany Rayside (<a href="http://codepen.io/tmrDevelops">@tmrDevelops</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 					<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 					</section>
 
+
 					<section>
-						<canvas id='canv' class='stretch'></canvas>
-						<script src="deliquescent.js" type="text/javascript" charset="utf-8" async defer></script>
+						<iframe src="deli.html"></iframe>
 					</section>
+				</section>
+
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+					<section>
+						<br><h2>What's happening?</h2><br>
+							<div class="flexcontainer">
+								<textarea class="column2 flexitem"></textarea>
+								<div class="spacer"></div>
+								<iframe scrolling="no" class="column2 flexitem" src="deli.html"></iframe>
+							</div>
+					</section>
+				</section>
+
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+
+			<div class="flexcontainer flex-row">
+
+				<div class="flexcontainer flex-col">
+					<h4>Crowdsourced Answer</h4>
+						<p class="flexitem" id="audienceList" style="white-space: pre-line"></p>
+						<p class="flexitem"></p>
+				</div>
+				<div class="spacer"></div>
+				<div class="flexcontainer flex-col">
+						<h4>Hannah's Answer</h4>
+							<ul>
+								<li>setup the canvas</li>
+								<li>create a bunch of points</li>
+								<li>animate</li>
+								<ul>
+									<li>clear canvas</li>
+									<li>update the color</li>
+									<li>find new position for each point</li>
+									<li>draw lines between the points</li>
+									<li>use mouse interaction</li>
+								</ul>
+							</ul>
+					</div>
+				</div>
 
 				</section>
 
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
-					<h2>What's happening?</h2>
+					<div id="canvases" class="flexcontainer">
+						<canvas id="canv-one" width="300" height="300"></canvas>
+					</div>
+					<script src="appendcanvases.js"></script>
+					<!-- <script src="deli_one.js"></script> -->
+				</section>
 
-					<section>
-						<canvas id='canv' style='border: 0px; margin: 0px; padding: 0px; diplay: block;' ></canvas>
-						<script src="deliquescent.js" type="text/javascript" charset="utf-8" async defer></script>
-					</section>
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+					<div class="flexcontainer flex-col" id="pull-section">
+						<canvas id="pull"></canvas>
+					</div>
+					<script src="pull.js"></script>
+				</section>
 
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+					<canvas id='refactored'></canvas>
+					<script src="refactored.js" charset="utf-8"></script>
 				</section>
 
 			</div><!-- END OF .slides -->
@@ -82,12 +203,23 @@
 		<script>
 		Reveal.initialize({
 			width: '100%', height: '100%', margin: 0,
+			// Transition speed
+    	transitionSpeed: 'fast', // default/fast/slow
 
 			dependencies: [
 				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 				{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
 			]
 			});
+		</script>
+
+		<script>
+			var textarea = document.getElementsByTagName('textarea')[0]
+			var audienceList = document.getElementById('audienceList')
+			textarea.addEventListener('keyup', function(){
+				document.getElementById('audienceList').innerHTML = textarea.value
+			})
+			//document.getElementById('audienceList').innerHTML = textarea
 		</script>
 
 	</body>
