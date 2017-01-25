@@ -13,6 +13,8 @@
 
   // dom sections
   var div = document.getElementById('pull-section')
+  var xDiv = document.createElement('div')
+  var yDiv = document.createElement('div')
   var xPullValue = document.createElement('output')
   var yPullValue = document.createElement('output')
   var xPullLabel = document.createElement('label')
@@ -22,16 +24,20 @@
   xPullValue.id = 'xPull'
   xPullLabel.htmlFor = 'xPull'
   xPullLabel.innerHTML = 'xPull: '
+  // xPullLabel.className = 'flexitem'
 
   yPullValue.value = 0
   yPullValue.id = 'yPull'
   yPullLabel.htmlFor = 'yPull'
   yPullLabel.innerHTML = 'yPull: '
+  // yPullLabel.className = 'flexitem'
 
-  div.appendChild(xPullLabel)
-  div.appendChild(xPullValue)
-  div.appendChild(yPullLabel)
-  div.appendChild(yPullValue)
+  div.appendChild(xDiv)
+  xDiv.appendChild(xPullLabel)
+  xDiv.appendChild(xPullValue)
+  div.appendChild(yDiv)
+  yDiv.appendChild(yPullLabel)
+  yDiv.appendChild(yPullValue)
 
   //events + interaction
   var mouse = {

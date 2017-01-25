@@ -35,6 +35,9 @@
 				display: flex;
 				flex-wrap: wrap;
 				align-content: center;
+				margin: 40px;
+				border: 25px solid goldenrod;
+				height: 100vh
 			}
 
 			.flex-row {
@@ -52,8 +55,17 @@
 				flex-wrap: nowrap;
 			}
 
-			.flexitem {
+			/*.flexitem {
 				padding: 20px;
+			}*/
+
+			.deliwhat {
+				flex-grow: 3;
+			}
+			.crowd {
+				flex-grow: 1;
+				padding: 20px;
+				margin: 40px;
 			}
 
 			.spacer {
@@ -62,8 +74,8 @@
 			}
 
 			.column2{
-				width: 35%;
-				height: 600px;
+				/*width: 35%;*/
+				height: 100vh;
 			}
 
 			iframe {
@@ -71,6 +83,41 @@
 				border: 5px;
 			}
 
+			.controlvariables {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				border: 2px solid rose !important;
+			}
+
+			#canv-one {
+			}
+
+			.controlvariables > * {
+				/*width: calc(33.33%-100px);*/
+				min-width: 330px;
+				flex-basis: 0 0 auto;
+				padding: 20px;
+				/*margin: 100px;*/
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				/*border: 2px solid goldenrod !important;*/
+			}
+
+			#pull-section {
+				display: flex;
+			}
+
+			#pull-section > div {
+				/*display: flex;*/
+				margin: 20px;
+				flex-direction: column;
+			}
+
+			#pull-section label, output {
+				margin: 10px;
+			}
 
 
 /*.left {
@@ -119,7 +166,7 @@
 
 					<section>
 					<h4>Deliquescent by Tiffany Rayside</h4>
-					<p data-height="600" data-theme-id="0" data-slug-hash="OPZKNd" data-default-tab="js,result" data-user="tmrDevelops" data-embed-version="2" data-pen-title="deliquescent" class="codepen">See the Pen <a href="https://codepen.io/tmrDevelops/pen/OPZKNd/">deliquescent</a> by Tiffany Rayside (<a href="http://codepen.io/tmrDevelops">@tmrDevelops</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+					<p data-height="100vh" data-theme-id="0" data-slug-hash="OPZKNd" data-default-tab="js,result" data-user="tmrDevelops" data-embed-version="2" data-pen-title="deliquescent" class="codepen">See the Pen <a href="https://codepen.io/tmrDevelops/pen/OPZKNd/">deliquescent</a> by Tiffany Rayside (<a href="http://codepen.io/tmrDevelops">@tmrDevelops</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 					<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 					</section>
 
@@ -132,11 +179,11 @@
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
 					<section>
-						<br><h2>What's happening?</h2><br>
+						<br><h2>What's happening?</h2>
 							<div class="flexcontainer">
-								<textarea class="column2 flexitem"></textarea>
-								<div class="spacer"></div>
-								<iframe scrolling="no" class="column2 flexitem" src="deli.html"></iframe>
+								<textarea class="column2 crowd"></textarea>
+								<!-- <div class="spacer"></div> -->
+								<iframe scrolling="no" class="column2 deliwhat" src="deli.html"></iframe>
 							</div>
 					</section>
 				</section>
@@ -161,7 +208,7 @@
 								<ul>
 									<li>clear canvas</li>
 									<li>update the color</li>
-									<li>find new position for each point</li>
+									<li class="fragment highlight-green">find new position for each point</li>
 									<li>draw lines between the points</li>
 									<li>use mouse interaction</li>
 								</ul>
@@ -173,7 +220,12 @@
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
-					<div id="canvases" class="flexcontainer">
+					<div id="canvases" class="controlvariables">
+						<div>
+							<h3>One Point Moving</h3>
+						  <p>hi hi</p>
+						</div>
+
 						<canvas id="canv-one" width="300" height="300"></canvas>
 					</div>
 					<script src="appendcanvases.js"></script>
@@ -181,9 +233,9 @@
 				</section>
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
-					<div class="flexcontainer flex-col" id="pull-section">
-						<h3>4-way Tug of War</h3>
+				<section id="check">
+					<h3>4-Way Tug of War</h3>
+					<div id="pull-section">
 						<canvas id="pull"></canvas>
 					</div>
 					<script src="pull.js"></script>
@@ -203,14 +255,18 @@
 
 		<script>
 		Reveal.initialize({
-			width: '100%', height: '100%', margin: 0,
+			width: '100%', height: '100%', margin: 0, minScale: 1, maxScale: 1,
 			// Transition speed
-    	transitionSpeed: 'fast', // default/fast/slow
+    	// transitionSpeed: 'fast', // default/fast/slow
+			transition: 'none',
 
-			dependencies: [
-				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
-			]
+			// dependencies: [
+			// 	{ src: 'lib/js/classList.js',
+			// 		condition: function() { return !document.body.classList; } },
+			// 	{ src: 'plugin/highlight/highlight.js', async: true,
+			// 		condition: function() { return !!document.querySelector( 'pre code' ); },
+			// 		callback: function() { hljs.initHighlightingOnLoad(); } }
+			// ]
 			});
 		</script>
 

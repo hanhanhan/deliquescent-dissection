@@ -8,11 +8,14 @@
 (function appendCanvases() {
 
   var canvas = document.getElementById('canv-one');
-  canvas.className = "flex-col canvas-group"
+  canvas.className = "controlvariables"
   var context = canvas.getContext('2d');
-  canvas.width = 300;
+  canvas.width = 500;
   canvas.height = 300;
   context.lineWidth = 5
+
+  cvCanvasHeight = 275
+  cvCanvasWidth = 300
 
    //y height (canvas height)
   const w = 150; //grid sq width
@@ -21,6 +24,7 @@
   var rows = 1//canvas.height/w; //number of rows
   var columns = 3//canvas.width/w; //number of columns
   var j = 1
+  var space_w = (canvas.width - (columns - 1) * w) / 2
 
   const KX1 = 0.013; //X axis amplification - multiplier for difference between resting position and pulled point
   const KX2 = 0.025; //X axis decay
@@ -35,58 +39,63 @@
   var displacementMax = 0;
   var colorScale = 1;
 
-  var timeStack = []
-  var variablesStack = {}
+
+  // plot control variables as function of time
+  var timeStack = [] // time points
+  var variablesStack = {} // objlit of arrays of control variables over time
   var timepoints = 200 //
 
   var controlVariables =
     [//'xPull',
     'yPull',
     //'vx',
-    'vy',
+    'yResult',
     'displacement',
     //'off_dx',
     'off_dy',
     //'x',
-    'y'
+    //'y'
     ]
 
   var canvases = {}
   var contexts = {}
   // var yScales = { default: 1}
   // var precision = { default: 1 }
+
+  // set up each control variable canvas
   var canvasSection = document.getElementById('canvases')
 
   for(var i = 0; i < controlVariables.length; i++){
     canvases[controlVariables[i]] = document.createElement('canvas')
     var div = document.createElement('div')
-    var title = document.createElement('h6')
-    var currentValue = document.createElement('p')
+    var currentValue = document.createElement('var')
+    var br = document.createElement('br')
     currentValue.dataset.value = controlVariables[i]
-    title.innerHTML = controlVariables[i]
 
     canvases[controlVariables[i]].id = controlVariables[i]
-    canvases[controlVariables[i]].height = 300
-    canvases[controlVariables[i]].width = 300
+    canvases[controlVariables[i]].height = cvCanvasHeight
+    canvases[controlVariables[i]].width = cvCanvasWidth
     contexts[controlVariables[i]] = canvases[controlVariables[i]].getContext('2d')
     contexts[controlVariables[i]].lineWidth = 3
 
     canvasSection.appendChild(div)
-    div.className = "flex-col canvas-group"
-    div.appendChild(title)
+    div.className = "canvas-group"
     div.appendChild(currentValue)
+    // div.appendChild(br)
     div.appendChild(canvases[controlVariables[i]])
   }
 
   var labels = [...document.querySelectorAll('[data-value]')]
 
+
+  // set up deliquescent demo with few points
   var Part = function() {
     this.x = 0; //x pos
     this.y = 0; //y pos
     this.xPull = 0;
     this.yPull = 0;
     this.vx = 0; //velocity x
-    this.vy = 0; //velocity y
+    this.yResult = 0; //velocity y
     this.ind_x = 0; //index x
     this.ind_y = 0; //index y
     this.displacement = 0; //distance from resting position
@@ -102,14 +111,14 @@
 
     if (this.ind_x == 0 || this.ind_x == columns - 1) {
       //pin edges for stability
-      this.x = this.ind_x * w;
+      this.x = this.ind_x * w + space_w;
       this.y = this.ind_y * h;
       return;
     }
 
     //off_dx, off_dy = offset distance x, y
     //distance from resting position
-    var off_dx = this.ind_x * w - this.x;
+    var off_dx = this.ind_x * w + space_w - this.x;
     var off_dy = this.ind_y * h - this.y;
 
     this.off_dx = off_dx;
@@ -129,10 +138,10 @@
 
     //amplification * net pull - decaying damping
     this.vx += KX1 * this.xPull - KX2 * this.vx;
-    this.vy += KY1 * this.yPull - KY2 * this.vy;
-    this.ind_x * w
+    this.yResult += KY1 * this.yPull - KY2 * this.yResult;
+    this.ind_x * w + space_w
     //this.x += this.vx;
-    this.y += this.vy;
+    this.y += this.yResult;
 
     if (mouseDown) {
       var dx = 0//this.x - mouseX;
@@ -182,7 +191,7 @@
           var p = new Part();
           p.ind_x = i;
           p.ind_y = j;
-          p.x = i * w;
+          p.x = i * w + space_w;
           p.y = j * h;
           parts[i] = p;
         //}
@@ -245,10 +254,10 @@
         context.beginPath();
         p.frame();
         p.displacementStyle();
-        // if(i === 0 || i === columns - 1){
-        //   context.fillStyle = 'white'
-        //   context.strokeStyle = 'white'
-        // }
+        if(i === 0 || i === columns - 1){
+          context.fillStyle = 'white'
+          context.strokeStyle = 'white'
+        }
         draw(i);
         context.fill()
         context.stroke();
@@ -278,6 +287,7 @@
   }
 
   // append canvases
+  var xInt = cvCanvasWidth /timepoints
 
   function drawCanvas(value){
     // contexts[value].fillStyle = 'orange'
@@ -287,14 +297,15 @@
     contexts[value].translate(0, canvases[value].height/2)
     contexts[value].beginPath()
     contexts[value].moveTo(0,0)
-    var xInt = canvases[value].width/timepoints
+
+    var label = labels.filter(l => l.dataset.value === value)[0]
 
     for(var t=0; t < timepoints - 1; t++){
       var xTime = xInt * t
       var yVal = variablesStack[value][t]
       contexts[value].lineTo(xTime, yVal)
-      var label = labels.filter(l => l.dataset.value === value)[0]
-      label.innerHTML = yVal ? yVal.toFixed(2) : ""
+
+      label.innerHTML = yVal ? `${value}:  ${yVal.toFixed()}` : `${value}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
     }
     contexts[value].stroke()
     contexts[value].translate(0, -canvases[value].height/2)
