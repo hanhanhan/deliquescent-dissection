@@ -60,6 +60,7 @@ Part.prototype.frame = function frame() {
 
   this.off_dx = off_dx;
   this.off_dy = off_dy;
+  
   this.displacement = Math.sqrt(off_dx * off_dx + off_dy * off_dy);
 
   var ax = 0;

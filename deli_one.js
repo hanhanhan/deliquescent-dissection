@@ -120,12 +120,16 @@ Part.prototype.displacementStyle = function displacementStyle(){
   lightness = lightness < 40 ? 40 : lightness;
   lightness = lightness + "%";
 
-  var alpha_offset = 0.6;
-  var alpha = alpha_offset + this.off_dx;
-  alpha = alpha > 1 ? 1 : alpha;
-  alpha = alpha < 0.2 ? 0.2 : alpha;
+  // var alpha_offset = 0.6;
+  // var alpha = alpha_offset + this.off_dx;
+  // alpha = alpha > 1 ? 1 : alpha;
+  // alpha = alpha < 0.2 ? 0.2 : alpha;
+  alpha = 1;
 
-  context.strokeStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
+  //context.strokeStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
+  //context.fillStyle = 'hsla(' + hue + ',' + context.strokeStyle = 'hsla(' + hue + ',' saturation + ', ' + lightness + ', ' + alpha +')';
+  context.fillStyle = `hsla(${hue % 360}, 80%, 50%, 1)`
+  context.strokeStyle = `hsla(${hue % 360}, 80%, 50%, 1)`
   context.beginPath();
 }
 
@@ -188,6 +192,7 @@ function run() {
       p.displacementStyle();
       draw(i);
       context.stroke();
+      context.fill();
 
       colorScale = 100;
 

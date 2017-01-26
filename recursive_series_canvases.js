@@ -50,6 +50,8 @@
     'yPull',
     //'xShift',
     'yShift',
+    'K<sub>a</sub> &times yPull',
+    'K<sub>d</sub> &times yShift'
     //'displacement',
     //'off_dx',
     //'off_dy',
@@ -96,6 +98,9 @@
     this.yPull = 0;
     this.xShift = 0; //velocity x
     this.yShift = 0; //velocity y
+    //this.Ka_yPull = 0;
+    this['Ka &times yPull'] = 0;
+    this['K<sub>d</sub> &times yShift'] = 0;
     this.ind_x = 0; //index x
     this.ind_y = 0; //index y
     //this.displacement = 0; //distance from resting position
@@ -134,7 +139,8 @@
     this.xPull -= this.x - parts[this.ind_x + 1].x;
     this.yPull -= this.y - parts[this.ind_x + 1].y;
 
-
+    this['K<sub>a</sub> &times yPull'] = KY1 * this.yPull
+    this['K<sub>d</sub> &times yShift'] = - KY2 * this.yShift
 
     //amplification * net pull - decaying damping
     this.xShift += KX1 * this.xPull - KX2 * this.xShift;
@@ -305,7 +311,7 @@
       var yVal = variablesStack[value][t]
       contexts[value].lineTo(xTime, yVal)
 
-      label.innerHTML = yVal ? `${value}:  ${yVal.toFixed()}` : `${value}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+      label.innerHTML = yVal ? `${value}:  ${yVal.toFixed(2)}` : `${value}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
     }
     contexts[value].stroke()
     contexts[value].translate(0, -canvases[value].height/2)

@@ -1,11 +1,19 @@
-Make business cards - pixel profile image?
+on slides
+add axes
+add decay
+fix 2nd column on crowd answer
+fill circle
+
+
+
+-------
+
 Update github deliquescent files - math part
 update github + codepen profiles
 
-bc
-car registration payment
 hannahjlazarus email?
 
+realPython flask authentication post
 asynchronous flow, callbacks, promises, observables, ticks, timeouts
 What is Node.js?
 non-blocking

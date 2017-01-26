@@ -29,6 +29,7 @@
 
 			reveal h2 {
 				padding: 1in;
+				margin-top: 1em;
 			}
 
 			.flexcontainer {
@@ -105,19 +106,33 @@
 				/*border: 2px solid goldenrod !important;*/
 			}
 
-			#pull-section {
-				display: flex;
+			canvas, #pull {
+				float: left;
+				margin: 20px;
 			}
 
-			#pull-section > div {
+			#pull-section {
+				margin-top: 30px;
+				float: left;
+			}
+
+			#pull-section > * {
 				/*display: flex;*/
 				margin: 20px;
-				flex-direction: column;
+				/*flex-direction: column;*/
 			}
 
 			#pull-section label, output {
 				margin: 10px;
 			}
+
+			.series {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				/*height: 100vh;*/
+			}
+
 
 
 /*.left {
@@ -218,12 +233,155 @@
 
 				</section>
 
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+				<section>
+					<h3>4-Way Tug of War</h3>
+
+						<canvas id="pull"></canvas>
+						<div id="pull-section">
+						<span id="xDivPull">
+							<label></label>
+							<output></output>
+						</span>
+
+						<span id="yDivPull">
+							<label></label>
+							<output></output>
+						</span>
+
+						<div class="fragment current-visible">
+							<br>
+						<ul>
+							<li>X<sub>up</sub> - X</li>
+							<li>X<sub>down</sub> - X</li>
+							<li>X<sub>left</sub> - X</li>
+							<li>X<sub>right</sub> - X</li>
+						</ul>
+							<!-- $$X_{\text{up}}$$ -->
+							<!-- $$\begin{align}
+							124& \\
+							\underline{+\quad 53}& \\
+							177&
+							\end{align}$$ -->
+						</div>
+					</div>
+					<script src="pull.js"></script>
+				</section>
+				<section>
+					<h3>Hannah's Version</h3>
+					<ul>
+					  <li>var Pull<sub>x</sub> = 0;</li>
+					  <li>Pull<sub>x</sub> +=  parts[this.ind_x - 1][this.ind_y].x - this.x;</li>
+					  <li>Pull<sub>x</sub> +=  parts[this.ind_x + 1][this.ind_y].x - this.x;</li>
+					  <li>Pull<sub>x</sub> +=  parts[this.ind_x][this.ind_y - 1].x - this.x;</li>
+					  <li>Pull<sub>x</sub> +=  parts[this.ind_x][this.ind_y + 1].x - this.x;</li>
+				</ul>
+
+				</section>
+				<section>
+					<h3>Tiffany's Version</h3>
+					<p>ax = P1 * off_dx;</p>
+			    <p>ax -= P2 * (this.x - parts[this.ind_x - 1][this.ind_y].x);</p>
+			    <p>ax -= P2 * (this.x - parts[this.ind_x + 1][this.ind_y].x);</p>
+			    <p>ax -= P2 * (this.x - parts[this.ind_x][this.ind_y - 1].x);</p>
+			    <p>ax -= P2 * (this.x - parts[this.ind_x][this.ind_y + 1].x);</p>
+				</section>
+			</section>
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<section>
+					<section>
+						<h3>Find the Next Position</h3>
+						<ul class="series">
+							<br>
+							<li>Position<sub>Next</sub> = Position<sub>Now</sub> + Shift<sub>Now</sub></li>
+							<li class="fragment">Position<sub>n+1</sub> = Position<sub>n</sub> + <span class="fragment highlight-blue">Shift<sub>n</sub></span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Find the Amount to Shift</h3>
+					<ul class="series">
+						<br>
+						<li>Shift<sub>Next</sub> = </li>
+						<li>K<sub>amplification</sub> &times Pull<sub>Now</sub> <span class="fragment fade-out">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
+				</ul>
+			</section>
+
+			<!-- <section>
+				<h3>Find the Amount to Shift</h3>
+				<ul class="series">
+					<br>
+					<li>Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li>
+				</ul>
+			</section> -->
+
+				<section>
+					<h3>Find the Amount to Shift</h3>
+					<ul class="series">
+
+						<span><li>Shift - K<sub>decay</sub> &times Shift</li></span>
+						<span class="fragment"><li>Shift (1 - K<sub>decay)</li></span>
+						<span class="fragment"><li>Shift &times 97%</li></span>
+						<span class="fragment"><li>(((Shift &times 97%) 97% ) 97%)</li></span>
+						
+					</ul>
+				</section>
+
+				<section  id="check">
+					<h3>Find the Amount to Shift</h3>
+					<ul class="series">
+
+						<span><li>Shift - K<sub>decay</sub> &times Shift</li></span>
+						<span><li>Shift (1 - K<sub>decay)</li></span>
+						<span><li>Shift &times 97%</li></span>
+						<span><li>(((Shift &times 97%) 97% ) 97%)</li></span>
+						<span><li>Shift &times 97% <sup>120</sup> = 3% </li></span>
+					</ul>
+					<canvas id="decay"></canvas>
+					<script src="decay_illustration.js" charset="utf-8"></script>
+				</section>
+
+				<section>
+					<h3>Find the Next Position</h3>
+					<ul class="series">
+						<br>
+						<li>Shift<sub>0</sub> = 0</li>
+						<li>Shift<sub>1</sub> = K<sub>amplification</sub> &times Pull<sub>0</sub> <span class="fragment fade-out">+ Shift<sub>0</sub></span> <span class="fragment fade-out"> - K<sub>decay</sub> &times Shift<sub>0</sub></li></span>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Find the Next Position</h3>
+				<ul class="series">
+					<br>
+					<!-- <span class="fragment fade-out"><li>Shift<sub>n+1</sub> = Shift<sub>n</sub> + K<sub>a</sub> &times Pull<sub>n</sub> <span> - K<sub>d</sub> &times Shift<sub>n</sub></li></span></span> -->
+					<span>
+							<li>Shift<sub>2</sub> = K<sub>a</sub> &times Pull<sub>1</sub> + Shift<sub>1</sub> - K<sub>d</sub> &times Shift<sub>1</sub></li>
+							<li>Shift<sub>2</sub> = K<sub>a</sub> &times Pull<sub>1</sub> + Shift<sub>1</sub> - K<sub>a</sub> ( K<sub>a</sub> &times Pull<sub>0</sub> ) </li>
+					</span>
+
+			</ul>
+		</section>
+
+		<section>
+			<h3>Find the Next Position</h3>
+			<ul class="series">
+				<br>
+					<span>	<li>Shift<sub>3</sub> = Shift<sub>2</sub> + K<sub>a</sub> &times Pull<sub>2</sub> - K<sub>d</sub> ( K<sub>a</sub> &times Pull<sub>1</sub> - K<sub>d</sub> ( K<sub>a</sub> &times Pull<sub>x</sub><sub>0</sub> ) )
+						</li>
+					</span>
+				</span>
+		</ul>
+	</section>
+				</section>
+
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
 					<div id="canvases" class="controlvariables">
 						<div>
 							<h3>One Point Moving</h3>
-						  <p>hi hi</p>
+							<p>hi hi</p>
 						</div>
 
 						<canvas id="canv-one" width="300" height="300"></canvas>
@@ -232,16 +390,7 @@
 					<!-- <script src="deli_one.js"></script> -->
 				</section>
 
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section id="check">
-					<h3>4-Way Tug of War</h3>
-					<div id="pull-section">
-						<canvas id="pull"></canvas>
-					</div>
-					<script src="pull.js"></script>
-				</section>
-
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
 					<canvas id='refactored'></canvas>
 					<script src="refactored.js" charset="utf-8"></script>
@@ -252,6 +401,20 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="reveal.js"></script>
+		<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+		    extensions: ["tex2jax.js"],
+		    jax: ["input/TeX", "output/HTML-CSS"],
+		    tex2jax: {
+		      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		      processEscapes: true
+		    },
+		    "HTML-CSS": { availableFonts: ["TeX"] }
+		  });
+		</script>
+		<script src="plugin/math/MathJax/MathJax.js"></script>
 
 		<script>
 		Reveal.initialize({
@@ -259,6 +422,15 @@
 			// Transition speed
     	// transitionSpeed: 'fast', // default/fast/slow
 			transition: 'none',
+
+			math: {
+				mathjax: 'plugin/math/MathJax/MathJax.js',
+				config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			},
+
+			// dependencies: [
+			// 	{ src: 'plugin/math/math.js', async: true }
+			// ]
 
 			// dependencies: [
 			// 	{ src: 'lib/js/classList.js',
