@@ -7,6 +7,7 @@
 //canvas
 (function appendCanvases() {
 
+  // bouncing point canvas setup
   var canvas = document.getElementById('canv-one');
   canvas.className = "controlvariables"
   var context = canvas.getContext('2d');
@@ -14,8 +15,14 @@
   canvas.height = 300;
   context.lineWidth = 5
 
-  cvCanvasHeight = 275
-  cvCanvasWidth = 300
+  //constants
+
+
+  // control variable canvas setup
+  var cvCanvasHeight = 275
+  var cvCanvasWidth = 300
+  var timepoints = 200
+  var xInt = cvCanvasWidth / timepoints
 
    //y height (canvas height)
   const w = 150; //grid sq width
@@ -26,10 +33,10 @@
   var j = 1
   var space_w = (canvas.width - (columns - 1) * w) / 2
 
-  const KX1 = 0.013; //X axis amplification - multiplier for difference between resting position and pulled point
-  const KX2 = 0.025; //X axis decay
-  const KY1 = 0.01; //Y axis amplification - multiplier for difference between resting position and pulled point
-  const KY2 = 0.035; //decay
+  var KX1 = 0.013; //X axis amplification - multiplier for difference between resting position and pulled point
+  var KX2 = 0.025; //X axis decay
+  var KY1 = 0.01; //Y axis amplification - multiplier for difference between resting position and pulled point
+  var KY2 = 0.035; //decay
 
   var parts; //particles
   var colorCycle = 0; //color offset which gets incremented with time
@@ -39,11 +46,44 @@
   var displacementMax = 0;
   var colorScale = 1;
 
+  // button event listeners
+  var stepButton = document.getElementById('Step')
+  var runButton = document.getElementById('Run')
+  var runState = true
+  var stepThrough = false
+  var toggle // requestAnimationFrame ID
+
+  // amplification/decay constant inputs
+  var Ka = document.getElementById('Ka')
+  var Kd = document.getElementById('Kd')
+  Ka.value = KY1
+  Kd.value = KY2
+
+  Ka.addEventListener('keydown', updateAmplificationConstant)
+  Kd.addEventListener('keydown', updateDecayConstant)
+
+  function updateAmplificationConstant(event){
+    if (event.keyCode === 13)
+      {
+        KY1  = this.value
+        this.style.color = 'goldenrod'
+        window.setTimeout(() => Ka.style.color = 'black', 1000)
+        // this.setAttribute('style', 'background-color: goldenrod')
+      }
+  }
+
+  function updateDecayConstant(event){
+    if (event.keyCode === 13)
+      {
+        KY2  = this.value
+        this.style.color = 'goldenrod'
+        window.setTimeout(() => Ka.style.color = 'black', 1000)
+      }
+  }
 
   // plot control variables as function of time
   var timeStack = [] // time points
   var variablesStack = {} // objlit of arrays of control variables over time
-  var timepoints = 200 //
 
   var controlVariables =
     [//'xPull',
@@ -150,13 +190,13 @@
     this.y += this.yShift;
 
     if (mouseDown) {
-      var dx = 0//this.x - mouseX;
+      var dx = this.x - mouseX;
       var dy = this.y - mouseY;
       var displacement = Math.sqrt(dx * dx + dy * dy);
       if (displacement < 100) {
         displacement = displacement < 10 ? 10 : displacement;
         //this.x -= dx / displacement * 5;
-        this.y -= dy / displacement * 5;
+        this.y += 10 * dy / displacement;
       }
     }
   };
@@ -166,26 +206,29 @@
     //off_dx and off_dy are positive and negative
 
     //hue is offset by a cycling color, in a 120 deg window normalized by % max displacement (color)
-    var hue = colorCycle + 120 * this.displacement / colorScale;
+    var hue = colorCycle// + 120 * this.displacement / colorScale;
 
-    var saturation_offset = 40;
-    var saturation = saturation_offset + this.displacement / colorScale;
-    saturation = saturation > 90 ? 90 : saturation;
-    saturation = saturation < 40 ? 40 : saturation;
-    saturation = saturation + "%";
+    // var saturation_offset = 40;
+    // var saturation = saturation_offset + this.displacement / colorScale;
+    // saturation = saturation > 90 ? 90 : saturation;
+    // saturation = saturation < 40 ? 40 : saturation;
+    // saturation = saturation + "%";
+    //
+    // var lightness_offset = 60;
+    // var lightness = lightness_offset + this.off_dy / colorScale;
+    // lightness = lightness > 80 ? 80 : lightness;
+    // lightness = lightness < 40 ? 40 : lightness;
+    // lightness = lightness + "%";
+    //
+    // var alpha_offset = 0.6;
+    // var alpha = alpha_offset + this.off_dx;
+    // alpha = alpha > 1 ? 1 : alpha;
+    // alpha = alpha < 0.2 ? 0.2 : alpha;
+    //context.fillStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
+    //context.strokeStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
+    context.fillStyle = `hsla(${hue % 360}, 80%, 50%, 1)`
+    context.strokeStyle = `hsla(${hue % 360}, 80%, 50%, 1)`
 
-    var lightness_offset = 60;
-    var lightness = lightness_offset + this.off_dy / colorScale;
-    lightness = lightness > 80 ? 80 : lightness;
-    lightness = lightness < 40 ? 40 : lightness;
-    lightness = lightness + "%";
-
-    var alpha_offset = 0.6;
-    var alpha = alpha_offset + this.off_dx;
-    alpha = alpha > 1 ? 1 : alpha;
-    alpha = alpha < 0.2 ? 0.2 : alpha;
-    context.fillStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
-    context.strokeStyle = 'hsla(' + hue + ',' + saturation + ', ' + lightness + ', ' + alpha +')';
     context.beginPath();
   }
 
@@ -205,7 +248,7 @@
     }
 
   //draw grid
-  function draw(i) {
+  function drawLine(i) {
     var p = parts[i];
     // these commented lines are fun to play with -- change drawing patterns
     var pAcross = parts[i+1]; //across row
@@ -214,8 +257,12 @@
     context.moveTo(p.x, p.y);
     context.lineTo(pAcross.x, pAcross.y);
     }
+  }
 
+  function drawCircle(i){
+    var p = parts[i];
     context.arc(p.x, p.y, 20, 0, 2*Math.PI);
+  }
     //context.moveTo(p.x, p.y);
     //context.lineTo(pDown.x, pDown.y);
     // var pUp = parts[i][j - 1];
@@ -228,7 +275,7 @@
     // context.lineTo(pDownRight.x, pDownRight.y);
     // context.moveTo(p.x, p.y);
     // context.lineTo(pDownLeft.x, pDownLeft.y);
-  }
+
 
   //mouse
   canvas.onmousedown = () => mouseDown = true;
@@ -240,6 +287,24 @@
     mouseY = e.clientY - rect.top;
   }
 
+  //runButton.onmousedown = () => console.log('hi')
+  runButton.addEventListener('click', toggleAnimation)
+  stepButton.addEventListener('click', stepAnimation)
+
+  function toggleAnimation(){
+    runState = !runState
+    if (runState){
+      run()
+      // window.requestAnimationFrame(run)
+    } else {
+      window.cancelAnimationFrame(toggle)
+    }
+  }
+
+  function stepAnimation(){
+    toggleAnimation()
+    window.cancelAnimationFrame(toggle)
+  }
   // doesn't work! assigns string 'item' instead of value
   // controlVariables.forEach(item => variablesStack.push({item:[]}))
   controlVariables.forEach(item => variablesStack[item] = [])
@@ -251,25 +316,28 @@
     //wipe canvas
     context.fillStyle = "hsla(0, 5%, 5%, .1)";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.translate(0,0)
+    // context.translate(0,0)
     colorCycle -= 1;
     displacementMax = 0;
+    colorScale = 100;
     //looping through array of points
     for (var i = 0; i < columns; i++) {
         var p = parts[i];
         context.beginPath();
         p.frame();
         p.displacementStyle();
-        // if(i === 0 || i === columns - 1){
-        //   context.fillStyle = 'white'
-        //   context.strokeStyle = 'white'
-        // }
-        draw(i);
-        context.fill()
+        drawLine(i);
         context.stroke();
+        context.beginPath();
+        if(i === 0 || i === columns - 1){
+          context.fillStyle = 'white';
+          context.strokeStyle = 'white';
+          context.arc(p.x, p.y, 20, 0, 2 * Math.PI);
+        } else {
+          drawCircle(i);
 
-
-        colorScale = 100;
+        }
+        context.fill();
 
       // plot each control variable
       if(i === 1){
@@ -288,12 +356,16 @@
       }
     }
 
-    window.requestAnimationFrame(run);
-    context.translate(-0,-0)
+    // context.translate(-0,-0)
+
+    if (stepThrough === false)
+    {
+      toggle = window.requestAnimationFrame(run);
+    }
+
   }
 
   // append canvases
-  var xInt = cvCanvasWidth / timepoints
 
   function drawCanvas(value){
     // contexts[value].fillStyle = 'orange'
@@ -306,12 +378,13 @@
 
     var label = labels.filter(l => l.dataset.value === value)[0]
 
-    for(var t=0; t < timepoints - 1; t++){
+    for(var t=0; t < variablesStack[value].length - 1; t++){
       var xTime = xInt * t
-      var yVal = variablesStack[value][t]
+      var yVal = Number(variablesStack[value][t].toFixed(2))
       contexts[value].lineTo(xTime, yVal)
 
-      label.innerHTML = yVal ? `${value}:  ${yVal.toFixed(2)}` : `${value}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+      //label.innerHTML = yVal ? `${value}:  ${yVal.toFixed(2)}` : `${value}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+      label.innerHTML = `${value}:  ${yVal}`
     }
     contexts[value].stroke()
     contexts[value].translate(0, -canvases[value].height/2)

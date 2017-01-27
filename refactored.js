@@ -20,10 +20,10 @@ const h = 15; //grid sq height
 var rows = canvas.height/w; //number of rows
 var columns = canvas.width/w; //number of columns
 
-const KX1 = 0.013; //X axus amplification - multiplier for difference between resting position and pulled point
-const KX2 = 0.025; //X axis decay
-const KY1 = 0.01; //Y axis amplification - multiplier for difference between resting position and pulled point
-const KY2 = 0.035; //decay
+const K_amplificationX = 0.013; //X axis amplification - multiplier for difference between resting position and pulled point
+const K_decayX = 0.025; //X axis decay
+const K_amplificationY = 0.01; //Y axis amplification - multiplier for difference between resting position and pulled point
+const K_decayY = 0.035; //decay
 
 var parts; //particles
 var colorCycle = 0; //color offset which gets incremented with time
@@ -36,8 +36,8 @@ var colorScale = 1;
 var Part = function() {
   this.x = 0; //x pos
   this.y = 0; //y pos
-  this.vx = 0; //velocity x
-  this.vy = 0; //velocity y
+  this.xShift = 0; //velocity x
+  this.yShift = 0; //velocity y
   this.ind_x = 0; //index x
   this.ind_y = 0; //index y
   this.displacement = 0; //distance from resting position
@@ -60,30 +60,33 @@ Part.prototype.frame = function frame() {
 
   this.off_dx = off_dx;
   this.off_dy = off_dy;
-  
+
   this.displacement = Math.sqrt(off_dx * off_dx + off_dy * off_dy);
 
-  var ax = 0;
-  var ay = 0;
+  var xPull = 0;
+  var yPull = 0;
 
-  ax -= this.x - parts[this.ind_x - 1][this.ind_y].x;
-  ay -= this.y - parts[this.ind_x - 1][this.ind_y].y;
+  // Vector math
+  // Net position from each neighbor (left, right, up, down)
+  // with the current position of the particle/grid intersection
+  xPull += parts[this.ind_x - 1][this.ind_y].x - this.x;
+  yPull += parts[this.ind_x - 1][this.ind_y].y - this.y;
 
-  ax -= this.x - parts[this.ind_x + 1][this.ind_y].x;
-  ay -= this.y - parts[this.ind_x + 1][this.ind_y].y;
+  xPull += parts[this.ind_x + 1][this.ind_y].x - this.x;
+  yPull += parts[this.ind_x + 1][this.ind_y].y - this.y;
 
-  ax -= this.x - parts[this.ind_x][this.ind_y - 1].x;
-  ay -= this.y - parts[this.ind_x][this.ind_y - 1].y;
+  xPull += parts[this.ind_x][this.ind_y - 1].x - this.x;
+  yPull += parts[this.ind_x][this.ind_y - 1].y - this.y;
 
-  ax -= this.x - parts[this.ind_x][this.ind_y + 1].x;
-  ay -= this.y - parts[this.ind_x][this.ind_y + 1].y;
+  xPull += parts[this.ind_x][this.ind_y + 1].x - this.x;
+  yPull += parts[this.ind_x][this.ind_y + 1].y - this.y;
 
   //amplification * net pull - decaying damping
-  this.vx += KX1 * ax - KX2 * this.vx;
-  this.vy += KY1 * ay - KY2 * this.vy;
+  this.xShift += K_amplificationX * xPull - K_decayX * this.xShift;
+  this.yShift += K_amplificationY * yPull - K_decayY * this.yShift;
 
-  this.x += this.vx;
-  this.y += this.vy;
+  this.x += this.xShift;
+  this.y += this.yShift;
 
   if (mouseDown) {
     var dx = this.x - mouseX;

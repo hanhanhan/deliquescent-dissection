@@ -88,15 +88,16 @@
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-around;
-				border: 2px solid rose !important;
 			}
 
 			#canv-one {
+				flex-grow:0;
+				flex-shrink: 0;
 			}
 
 			.controlvariables > * {
 				/*width: calc(33.33%-100px);*/
-				min-width: 330px;
+				/*min-width: 330px;*/
 				flex-basis: 0 0 auto;
 				padding: 20px;
 				/*margin: 100px;*/
@@ -133,6 +134,16 @@
 				/*height: 100vh;*/
 			}
 
+			button, input {
+				/*width: 100px;
+				height: 10px;*/
+				font-size: 1em;
+				font-family: inherit;
+				padding: 10px;
+				border-radius: 10px;
+				margin: 10px;
+				fill: 'white'
+			}
 
 
 /*.left {
@@ -324,11 +335,11 @@
 						<span class="fragment"><li>Shift (1 - K<sub>decay)</li></span>
 						<span class="fragment"><li>Shift &times 97%</li></span>
 						<span class="fragment"><li>(((Shift &times 97%) 97% ) 97%)</li></span>
-						
+
 					</ul>
 				</section>
 
-				<section  id="check">
+				<section>
 					<h3>Find the Amount to Shift</h3>
 					<ul class="series">
 
@@ -341,52 +352,30 @@
 					<canvas id="decay"></canvas>
 					<script src="decay_illustration.js" charset="utf-8"></script>
 				</section>
-
-				<section>
-					<h3>Find the Next Position</h3>
-					<ul class="series">
-						<br>
-						<li>Shift<sub>0</sub> = 0</li>
-						<li>Shift<sub>1</sub> = K<sub>amplification</sub> &times Pull<sub>0</sub> <span class="fragment fade-out">+ Shift<sub>0</sub></span> <span class="fragment fade-out"> - K<sub>decay</sub> &times Shift<sub>0</sub></li></span>
-				</ul>
 			</section>
 
-			<section>
-				<h3>Find the Next Position</h3>
-				<ul class="series">
-					<br>
-					<!-- <span class="fragment fade-out"><li>Shift<sub>n+1</sub> = Shift<sub>n</sub> + K<sub>a</sub> &times Pull<sub>n</sub> <span> - K<sub>d</sub> &times Shift<sub>n</sub></li></span></span> -->
-					<span>
-							<li>Shift<sub>2</sub> = K<sub>a</sub> &times Pull<sub>1</sub> + Shift<sub>1</sub> - K<sub>d</sub> &times Shift<sub>1</sub></li>
-							<li>Shift<sub>2</sub> = K<sub>a</sub> &times Pull<sub>1</sub> + Shift<sub>1</sub> - K<sub>a</sub> ( K<sub>a</sub> &times Pull<sub>0</sub> ) </li>
-					</span>
-
-			</ul>
-		</section>
-
-		<section>
-			<h3>Find the Next Position</h3>
-			<ul class="series">
-				<br>
-					<span>	<li>Shift<sub>3</sub> = Shift<sub>2</sub> + K<sub>a</sub> &times Pull<sub>2</sub> - K<sub>d</sub> ( K<sub>a</sub> &times Pull<sub>1</sub> - K<sub>d</sub> ( K<sub>a</sub> &times Pull<sub>x</sub><sub>0</sub> ) )
-						</li>
-					</span>
-				</span>
-		</ul>
-	</section>
-				</section>
-
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
+				<section id="check">
 					<div id="canvases" class="controlvariables">
 						<div>
 							<h3>One Point Moving</h3>
-							<p>hi hi</p>
+							<p>
+								<button id="Step">Step</button>
+								<button id="Run">Run</button>
+								<span>
+									<label for="Ka">K<sub>a</sub></label>
+									<input type="text" id="Ka" value="0.01" style="width: 7rem;">
+								</span>
+								<span>
+									<label for="Kd">K<sub>d</sub></label>
+									<input type="text" id="Kd" value="0.02" style="width: 7rem;">
+								</span>
+							</p>
 						</div>
 
-						<canvas id="canv-one" width="300" height="300"></canvas>
+						<canvas id="canv-one" style="width: 500px; height: 300px;"></canvas>
 					</div>
-					<script src="appendcanvases.js"></script>
+					<script src="recursive_series_canvases.js"></script>
 					<!-- <script src="deli_one.js"></script> -->
 				</section>
 
