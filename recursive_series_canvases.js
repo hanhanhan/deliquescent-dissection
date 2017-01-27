@@ -91,7 +91,7 @@
     //'xShift',
     'yShift',
     'K<sub>a</sub> &times yPull',
-    'K<sub>d</sub> &times yShift'
+    // 'K<sub>d</sub> &times yShift'
     //'displacement',
     //'off_dx',
     //'off_dy',

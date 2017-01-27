@@ -108,7 +108,7 @@
 				/*border: 2px solid goldenrod !important;*/
 			}
 
-			canvas, #pull {
+			#pull {
 				float: left;
 				margin: 20px;
 			}
@@ -301,7 +301,7 @@
 				</section>
 			</section>
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
+
 					<section>
 						<h3>Find the Next Position</h3>
 						<ul class="series">
@@ -353,7 +353,7 @@
 					<canvas id="decay"></canvas>
 					<script src="decay_illustration.js" charset="utf-8"></script>
 				</section>
-			</section>
+
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
@@ -391,20 +391,7 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="reveal.js"></script>
-		<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-		    extensions: ["tex2jax.js"],
-		    jax: ["input/TeX", "output/HTML-CSS"],
-		    tex2jax: {
-		      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-		      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-		      processEscapes: true
-		    },
-		    "HTML-CSS": { availableFonts: ["TeX"] }
-		  });
-		</script>
-		<script src="plugin/math/MathJax/MathJax.js"></script>
+
 
 		<script>
 		Reveal.initialize({
@@ -413,14 +400,7 @@
     	// transitionSpeed: 'fast', // default/fast/slow
 			transition: 'none',
 
-			math: {
-				mathjax: 'plugin/math/MathJax/MathJax.js',
-				config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-			},
 
-			// dependencies: [
-			// 	{ src: 'plugin/math/math.js', async: true }
-			// ]
 
 			// dependencies: [
 			// 	{ src: 'lib/js/classList.js',
