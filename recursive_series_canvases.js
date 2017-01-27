@@ -67,7 +67,7 @@
       {
         KY1  = this.value
         this.style.color = 'goldenrod'
-        window.setTimeout(() => Ka.style.color = 'black', 1000)
+        window.setTimeout(() => Ka.style.color = 'black', 500)
         // this.setAttribute('style', 'background-color: goldenrod')
       }
   }
@@ -77,7 +77,7 @@
       {
         KY2  = this.value
         this.style.color = 'goldenrod'
-        window.setTimeout(() => Ka.style.color = 'black', 1000)
+        window.setTimeout(() => Ka.style.color = 'black', 500)
       }
   }
 
