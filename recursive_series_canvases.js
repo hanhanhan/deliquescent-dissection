@@ -77,7 +77,7 @@
       {
         KY2  = this.value
         this.style.color = 'goldenrod'
-        window.setTimeout(() => Ka.style.color = 'black', 500)
+        window.setTimeout(() => Kd.style.color = 'black', 500)
       }
   }
 

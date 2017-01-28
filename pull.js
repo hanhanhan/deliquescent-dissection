@@ -3,13 +3,15 @@
 
   // canvas setup
   var canvas = document.getElementById('pull')
-  canvas.height = 500
-  canvas.width = 500
+  canvas.height = 600
+  canvas.width = 600
   var context = canvas.getContext('2d')
   context.lineWidth = 5
   const radius = 25
   var hue = 0;
   context.strokeStyle = 'white'
+  var drift = 0
+  var driftDirection = 1
 
   // dom sections
   var div = document.getElementById('pull-section')
@@ -73,6 +75,14 @@
       }
     }
 
+  function driftPoint(neighbor) {
+    drift = 1
+    drift *= driftDirection
+    if (drift > 10) { driftDirection = -1}
+    if (drift < -10) { driftDirection = 1}
+    neighbor.y += drift;
+  }
+
   // four neighbor points that 'pull'
   const xSpacing = canvas.width/4
   const ySpacing = canvas.height/4
@@ -129,7 +139,7 @@
     // context.fillStyle = `hsla(${hue},100%,50%,1)`;
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height)
-
+    // driftPoint(neighbors[0])
     neighbors.forEach(drawNeighbor)
     context.fillStyle = 'white'
     context.strokeStyle = 'white'
