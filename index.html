@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="lib/css/theme/night_dq.css" id="theme">
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/theme/night_dq.css">
+		<link rel="stylesheet" href="deliquescent_custom.css">
 		<!-- Printing and PDF exports -->
 		<script>
 		var link = document.createElement( 'link' );
@@ -19,157 +20,7 @@
 
 		<style>
 
-			#titlecard {
-				text-shadow: 0 0 10px black, 0 0 20px black;
-			}
-
-			.titlecard {
-				text-shadow: 0 0 10px black, 0 0 20px black;
-			}
-
-			reveal h2 {
-				padding: 1in;
-				margin-top: 1em;
-			}
-
-			.flexcontainer {
-				display: flex;
-				flex-wrap: wrap;
-				align-content: center;
-				margin: 40px;
-				border: 25px solid goldenrod;
-				height: 80vh;
-			}
-
-			.column2{
-				/*width: 35%;*/
-				/*height: 70vh;*/
-			}
-
-			.flex-row {
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				align-content: flex-start;
-				flex-wrap: nowrap;
-			}
-
-			.flex-col {
-				flex-direction: column;
-				justify-content: flex-start;
-				align-items: flex-start;
-				flex-wrap: nowrap;
-			}
-
-			/*.flexitem {
-				padding: 20px;
-			}*/
-
-			.deliwhat {
-				flex-grow: 3;
-			}
-			.crowd {
-				flex-grow: 1;
-				padding: 20px;
-				margin: 40px;
-			}
-
-			.spacer {
-				width: 5%;
-				height: 5%;
-			}
-
-
-			iframe {
-				overflow: hidden;
-				border: 5px;
-			}
-
-			.controlvariables {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-around;
-			}
-
-			#canv-one {
-				flex-grow:0;
-				flex-shrink: 0;
-			}
-
-			.controlvariables > * {
-				/*width: calc(33.33%-100px);*/
-				/*min-width: 330px;*/
-				flex-basis: 0 0 auto;
-				padding: 20px;
-				/*margin: 100px;*/
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				/*border: 2px solid goldenrod !important;*/
-			}
-
-			#pull {
-				float: left;
-				margin: 20px;
-			}
-
-			#pull-section {
-				margin-top: 30px;
-				float: left;
-			}
-
-			#pull-section > * {
-				/*display: flex;*/
-				margin: 20px;
-				/*flex-direction: column;*/
-			}
-
-			#pull-section label, output {
-				margin: 10px;
-			}
-
-			.series {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				/*height: 100vh;*/
-			}
-
-			button, input {
-				/*width: 100px;
-				height: 10px;*/
-				font-size: 1em;
-				font-family: inherit;
-				padding: 10px;
-				border-radius: 10px;
-				margin: 10px;
-				fill: 'white'
-			}
-
-			#endcard {
-				position: absolute;
-				top: 2em;
-				left: 2em;
-				text-shadow: 0 0 5px black, 0 0 8px black, 0 0 10px black, 0 0 15px black, 0 0 25px black;
-			}
-
-
-/*.left {
-  /*left:-8.33%;*/
-  /*text-align: left;*/
-  /*float: left;
-  width:30%;*/
-  /*z-index:-10;*/
-}
-
-/*.right {*/
-  /*left:31.25%;*/
-  /*top: 75px;*/
-  /*float: right;*/
-  /*text-align: right;*/
-  /*z-index:-10;*/
-  /*width:30%;*/
-/*}*/
+	
 		</style>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -271,7 +122,7 @@
 
 						<div class="fragment current-visible">
 							<br>
-						<ul>
+						<ul class="addition">
 							<li>X<sub>up</sub> - X</li>
 							<li>X<sub>down</sub> - X</li>
 							<li>X<sub>left</sub> - X</li>
@@ -323,7 +174,7 @@
 					<ul class="series">
 						<br>
 						<li>Shift<sub>Next</sub> = </li>
-						<li>K<sub>amplification</sub> &times Pull<sub>Now</sub> <span class="fragment fade-out">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
+						<li>K<sub>Pull</sub> &times Pull<sub>Now</sub> <span class="fragment fade-out">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
 				</ul>
 			</section>
 
@@ -371,7 +222,7 @@
 								<button id="Step">Step</button>
 								<button id="Run">Run</button>
 								<span>
-									<label for="Ka">K<sub>a</sub></label>
+									<label for="Ka">K<sub>p</sub></label>
 									<input type="text" id="Ka" value="0.01" style="width: 7rem;">
 								</span>
 								<span>
@@ -395,22 +246,11 @@
 						<li><h4><strong>hanhanhan</strong> on github and codepen<h4></li>
 						<li><h4>I'm turning this talk into a codepen post</h4></li>
 						<li><h4>I have to leave at 8:10 :(</h4></li>
-						<li><h4>Contact cards with Liz </h4> </li>
+						<li><h4>Contact cards with Liz</h4></li>
 					</ul>
 				</section>
 
 
-
-<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-<section>
-
-
-</section>
-
-<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-<section>
-
-</section>
 
 			</div><!-- END OF .slides -->
 		</div><!-- END OF .reveal -->
