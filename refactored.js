@@ -8,22 +8,21 @@
 (function deliquescentAgain(){
 
 //canvas
-var canvas = document.getElementById('refactored');
+var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-var xShiftArray = [];
 
  //y height (canvas height)
 const w = 15; //grid sq width
 const h = 15; //grid sq height
 
-var rows = canvas.height/w; //number of rows
-var columns = canvas.width/w; //number of columns
+var rows = Math.floor(canvas.height/w); //number of rows
+var columns = Math.floor(canvas.width/w); //number of columns
 
-const K_pullX = 0.015; //X axis pull scaling constant - multiplier for difference between neighbors and pulled point
+const K_amplificationX = 0.015; //X axis amplification - multiplier for difference between neighbors and pulled point
 const K_decayX = 0.03; //X axis decay
-const K_pullY = 0.015; //Y axis pull - multiplier for difference between neighbors and pulled point
+const K_amplificationY = 0.015; //Y axis amplification - multiplier for difference between neighbors and pulled point
 const K_decayY = 0.03; //Y axis decay
 
 var parts; //particles aka grid intersections
@@ -46,14 +45,7 @@ var Part = function() {
   this.off_dy = 0; //distance along y axis from resting position
 };
 
-Part.prototype.frame = function frame() {
-
-  // //pin edges for stability
-  // if (this.ind_x == 0 || this.ind_x == columns - 1 || this.ind_y == 0 || this.ind_y == rows - 1)
-  //   this.x = this.ind_x * w;
-  //   this.y = this.ind_y * h;
-  //   return;
-  // }
+Part.prototype.shift = function shift() {
 
   //off_dx, off_dy = offset distance x, y
   var off_dx = this.ind_x * w - this.x;
@@ -86,9 +78,9 @@ Part.prototype.frame = function frame() {
   xPull +=  parts[this.ind_x][this.ind_y + 1].x - this.x;
   yPull +=  parts[this.ind_x][this.ind_y + 1].y - this.y;
 
-  //scaling constant * net pull - decaying damping
-  this.xShift += K_pullX * xPull - K_decayX * this.xShift;
-  this.yShift += K_pullY * yPull - K_decayY * this.yShift;
+  //amplification * net pull - decaying damping
+  this.xShift += K_amplificationX * xPull - K_decayX * this.xShift;
+  this.yShift += K_amplificationY * yPull - K_decayY * this.yShift;
 
   // move the particle!
   this.x += this.xShift;
@@ -221,7 +213,7 @@ window.onload = function() {
       for (var j = 1; j < rows - 1; j++) {
         var p = parts[i][j];
         context.beginPath();
-        p.frame();
+        p.shift();
         p.displacementStyle();
         draw(i,j);
         context.stroke();
@@ -230,9 +222,6 @@ window.onload = function() {
         // for hue/saturation/value styling
         displacementMax = displacementMax > p.displacement ? displacementMax : p.displacement;
         displacementMax = displacementMax > 1 ? displacementMax : 1;
-        if (i == 10 && j == 10) {
-          xShiftArray.push(p.xShift)
-        }
       }
       displacementMax = displacementMax;
     }
