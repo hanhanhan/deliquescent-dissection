@@ -8,7 +8,7 @@
 (function deliquescentAgain(){
 
 //canvas
-var canvas = document.getElementById('canvas');
+var canvas = document.getElementById('refactored');
 var context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -20,9 +20,9 @@ const h = 15; //grid sq height
 var rows = Math.floor(canvas.height/w); //number of rows
 var columns = Math.floor(canvas.width/w); //number of columns
 
-const K_amplificationX = 0.015; //X axis amplification - multiplier for difference between neighbors and pulled point
+const K_amplificationX = 0.02; //X axis amplification - multiplier for difference between neighbors and pulled point
 const K_decayX = 0.03; //X axis decay
-const K_amplificationY = 0.015; //Y axis amplification - multiplier for difference between neighbors and pulled point
+const K_amplificationY = 0.02; //Y axis amplification - multiplier for difference between neighbors and pulled point
 const K_decayY = 0.03; //Y axis decay
 
 var parts; //particles aka grid intersections
