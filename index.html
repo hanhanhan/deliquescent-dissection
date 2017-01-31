@@ -76,11 +76,12 @@
 
 				<section>
 					<h3>Find the Next Position</h3>
-					<ul class="series">
-						<br>
-						<li>Position<sub>Next</sub> = Position<sub>Now</sub> + Shift<sub>Now</sub></li>
-						<li class="fragment">Position<sub>n+1</sub> = Position<sub>n</sub> + <span class="fragment highlight-blue">Shift<sub>n</sub></span></li>
-					</ul>
+					
+						
+					Position<sub>Next</sub> = 
+					Position<sub>Now</sub> + <span class="fragment highlight-blue">Shift<sub>Now</sub></span>
+						
+					
 				</section>
 
 				<section>
@@ -99,22 +100,35 @@
 					<div id="pull-section">
 						<canvas id="pull"></canvas>
 						
-						<button id="drift_button" style="display: none;" type=""></button><br>
-						<div>
-							<span id="xDivPull" style="text-align: left; width: 100px;">
-								<label>Net X Displacement:</label>
-								<output style="text-align: left;"></output>
+						
+						<div id="drift_button">
+							<span id="xDivPull">
+								<label  style="text-align: left; width: 250px;">Net X Pull:</label>
+								<output style="position: fixed;  text-align: right; width: 100px"></output>
 							</span>
 							<br>
-							<span id="yDivPull" style="text-align: left;">
-								<label>Net Y Displacement:</label>
-								<output style="text-align: left; width: 100px;"></output>
+							<span id="yDivPull" >
+								<label style="text-align: left; width: 250px">Net Y Pull:</label>
+								<output style="position: fixed; text-align: right; width: 100px;"></output>
 							</span>
+							<br><br>
+							<ul class="addition" style="position: fixed; text-align: right;">
+							<li>X<sub>up</sub> - X</li>
+							<li>X<sub>down</sub> - X</li>
+							<li>X<sub>left</sub> - X</li>
+							<li><span style="padding-right: 40px;">+</span>     X<sub>right</sub> - X</li>
+							<li style="margin-top: -10%;">__________________</li>
+							<li>K<sub>Pull</sub> * Net X Pull</li>
+						</ul>
+						
+							
 						</div>
+
 					</div>
 					
 					<script src="pull.js"></script>
 				</section>
+
 				<section>
 					<h3>Hannah's Version</h3>
 					<ul>
@@ -137,7 +151,14 @@
 			</section>
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 
-
+				<section>
+					<h3>Find the Amount to Shift</h3>
+					<ul class="series">
+						<br>
+						<li>Shift<sub>Next</sub> = </li>
+						<li>K<sub>Pull</sub> &times Pull<sub>Now</sub> <span class="fragment">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
+					</ul>
+				</section>
 
 
 
@@ -162,8 +183,6 @@
 				<section>
 					<h3>Shift Feedback</h3>
 					<ul class="series">
-						<li>Shift - K<sub>decay</sub> &times Shift</li>
-						<li>Shift (1 - K<sub>decay)</li>
 						<li>Shift &times 97%</li>
 						<li>(((Shift &times 97%) 97% ) 97%)</li>
 						<li>Shift &times 97% <sup>120</sup> = 3% </li>
