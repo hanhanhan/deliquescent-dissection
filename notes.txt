@@ -1,42 +1,11 @@
-on slides
-add axes
-add decay
-fix 2nd column on crowd answer
-fill circle
 
-
-
--------
-
-Update github deliquescent files - math part
-update github + codepen profiles
-
-hannahjlazarus email?
-
-realPython flask authentication post
-asynchronous flow, callbacks, promises, observables, ticks, timeouts
-What is Node.js?
-non-blocking
-push capability
-Organizing code with modules and imports
-- Embracing an event loop in a single thread
-- Running code in callbacks
-- Upgrading to promises
-Intro to server-side development: the basics of ExpressJS
-Topics of the class: Node.js, NPM, ExpressJS, “package.json” files,
-dependencies, modules, the “require” function, imports, exports, code organization,
-server-side development, full-stack development, NPM scripts.
-debugger, Chrome Dev Tools, this, shadowing, scope, test runners, expectations
-
-?git guide post
-?datascience @ hack for la
 --
 
 Hi my name is Hannah Lazarus
 I've been learning javascript for about half a year
 The thing I really love about javascript is its meant for the web, which means its meant for sharing.
 
-Last Oct? I found this beautiful codepen pen by Tiffany Rayside.
+Last Oct I found this beautiful codepen pen by Tiffany Rayside.
 She named Deliquescent.
 
 She's made all these inventive pens
@@ -47,9 +16,46 @@ This is your part.
 
 What's happening here?
 --
-Point is pulled by mouse
-Each point is pulled on by its neighbors, the net difference is used to calculate
+Here's my summary
 --
+We're going to focus on how the point moves
+--
+Each point is caught in a 4 way tug of war with its neighbors.
+
+That's how movement ripples across the grid.
+
+If we take the difference in position of the middle point, and the position of each of its neighbors, we get a resultant vector showing who's winnign the tug of war. 
+
+But really, all we're doing is addition and subtraction.
+
+This shows the total x difference, y difference
+
+--
+
+Ok, so now we know about the "Pull component"
+
+Shift is also a function of itself, what about that?
+
+Here's what we started with. 
+
+Let's factor out the Shift
+
+and plug in a real number.
+
+--
+
+so if we're multiplying by 97%, what's the decay constant?
+
+--
+
+97% might not seem like much of a reduction, but if you do this 60 times a second (which is standard for a javascript animation) for 2 seconds?
+
+You're not left with much. 3% of the movement you started with.
+
+--
+
+
+
 Tiffany's file shows experimentation
 In mine all the variables have been renamed,
 code is reorganized, equations are rearraged, some unused stuff was cut out

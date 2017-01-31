@@ -95,6 +95,8 @@
             #pull-section {
                 margin-top: 30px;
                 float: left;
+                display: flex;
+                justify-content: center;
             }
 
             #pull-section > * {
