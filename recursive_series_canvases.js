@@ -20,8 +20,8 @@
 
   // control variable canvas setup
   var cvCanvasHeight = 275
-  var cvCanvasWidth = 300
-  var timepoints = 200
+  var cvCanvasWidth = 1300
+  var timepoints = 900
   var xInt = cvCanvasWidth / timepoints
 
    //y height (canvas height)
@@ -87,10 +87,10 @@
 
   var controlVariables =
     [//'xPull',
-    'yPull',
+    // 'yPull',
     //'xShift',
     'yShift',
-    'K<sub>a</sub> &times yPull',
+    // 'K<sub>a</sub> &times yPull',
     // 'K<sub>d</sub> &times yShift'
     //'displacement',
     //'off_dx',

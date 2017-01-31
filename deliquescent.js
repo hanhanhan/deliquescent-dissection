@@ -30,7 +30,7 @@
   var P2 = 0.01; //point two
   var n = 0.98; //n value for later
   var n_vel = 0.02; //velocity
-  var ŭ = 0; //color update
+  var color = 0; //color update
   var msX = 0; //mouse x
   var msY = 0; //mouse y
   var msdn = false; //mouse down flag
@@ -113,9 +113,9 @@
     }
     //draw grid function
   function draw() {
-      $.strokeStyle = "hsla(" + (ŭ % 360) + ",100%,50%,1)";
+      $.strokeStyle = "hsla(" + (color % 360) + ",100%,50%,1)";
       $.beginPath();
-      ŭ -= .5;
+      color -= .5;
       for (var i = 0; i < gnum - 1; i += 1) {
         for (var j = 0; j < gnum - 1; j += 1) {
           var p1 = parts[i][j];

@@ -10,7 +10,7 @@
   var hue = 0
   context.strokeStyle = 'white'
   var drift = 0
-  var driftFlag = false
+  var driftFlag = true
   var timeStep = 100
   var lastAnimationFrameTime = Date.now()
 

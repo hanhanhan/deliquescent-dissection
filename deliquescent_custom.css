@@ -103,6 +103,10 @@
                 /*flex-direction: column;*/
             }
 
+            #pull-section output {
+                min-width: 50px;
+            }
+
             .addition {
 
             }
@@ -119,8 +123,8 @@
             }
 
             button, input {
-                /*width: 100px;
-                height: 10px;*/
+/*                 width: 100px;
+                height: 10px; */
                 font-size: 1em;
                 font-family: inherit;
                 padding: 10px;

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 	<head>
 		<title>&hearts;</title>
@@ -50,57 +50,46 @@
 					</section>
 
 					<section>
-					<h4>Deliquescent by Tiffany Rayside</h4>
-					<p data-height="100vh" data-theme-id="0" data-slug-hash="OPZKNd" data-default-tab="js,result" data-user="tmrDevelops" data-embed-version="2" data-pen-title="deliquescent" class="codepen">See the Pen <a href="https://codepen.io/tmrDevelops/pen/OPZKNd/">deliquescent</a> by Tiffany Rayside (<a href="http://codepen.io/tmrDevelops">@tmrDevelops</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-					<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-					</section>
-
-
-					<section>
 						<iframe src="deli.html"></iframe>
 					</section>
 				</section>
 
-				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
-					<section>
-						<br><h2>What's happening?</h2>
-							<div class="flexcontainer">
-								<textarea class="column2 crowd"></textarea>
-								<!-- <div class="spacer"></div> -->
-								<iframe scrolling="no" class="column2 deliwhat" src="deli.html"></iframe>
-							</div>
-					</section>
-				</section>
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 				<section>
 
-			<div class="flexcontainer flex-row">
-
-				<div class="flexcontainer flex-col">
-					<h4>Crowdsourced Answer</h4>
-						<p class="flexitem" id="audienceList" style="white-space: pre-line"></p>
-						<p class="flexitem"></p>
-				</div>
-				<div class="spacer"></div>
-				<div class="flexcontainer flex-col">
-						<h4>Hannah's Answer</h4>
+					<h3>Hannah's Answer</h3>
+						<ul>
+							<li>setup the canvas</li>
+							<li>create a bunch of points</li>
+							<li>animate</li>
 							<ul>
-								<li>setup the canvas</li>
-								<li>create a bunch of points</li>
-								<li>animate</li>
-								<ul>
-									<li>clear canvas</li>
-									<li>update the color</li>
-									<li class="fragment highlight-green">find new position for each point</li>
-									<li>draw lines between the points</li>
-									<li>use mouse interaction</li>
-								</ul>
+								<li>clear canvas</li>
+								<li>update the color</li>
+								<li class="fragment highlight-green">find new position for each point</li>
+								<li>draw lines between the points</li>
+								<li>use mouse interaction</li>
 							</ul>
-					</div>
-				</div>
+						</ul>
 
+				</section>
+
+				<section>
+					<h3>Find the Next Position</h3>
+					<ul class="series">
+						<br>
+						<li>Position<sub>Next</sub> = Position<sub>Now</sub> + Shift<sub>Now</sub></li>
+						<li class="fragment">Position<sub>n+1</sub> = Position<sub>n</sub> + <span class="fragment highlight-blue">Shift<sub>n</sub></span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Find the Amount to Shift</h3>
+					<ul class="series">
+						<br>
+						<li>Shift<sub>Next</sub> = </li>
+						<li>K<sub>Pull</sub> &times Pull<sub>Now</sub> <span class="fragment fade-out">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
+					</ul>
 				</section>
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
@@ -111,33 +100,17 @@
 						<canvas id="pull"></canvas>
 						
 						<div id="pull-section">
-						<button id="drift_button" type="">&#x25B6 &#x20e6</button><br>
+						<button id="drift_button" style="display: none;" type=""></button><br>
 						<div id="xDivPull">
 							<span>
 								<label>Net X Displacement:</label>
-								<output></output>
+								<output style="width: 7rem;"></output>
 							</span>
 							<br>
 							<span id="yDivPull">
 								<label>Net Y Displacement:</label>
-								<output></output>
+								<output style="width: 7rem;"></output>
 							</span>
-						</div>
-
-						<div class="fragment current-visible">
-							<br>
-						<ul class="addition">
-							<li>X<sub>up</sub> - X</li>
-							<li>X<sub>down</sub> - X</li>
-							<li>X<sub>left</sub> - X</li>
-							<li>X<sub>right</sub> - X</li>
-						</ul>
-							<!-- $$X_{\text{up}}$$ -->
-							<!-- $$\begin{align}
-							124& \\
-							\underline{+\quad 53}& \\
-							177&
-							\end{align}$$ -->
 						</div>
 					</div>
 					<script src="pull.js"></script>
@@ -164,23 +137,9 @@
 			</section>
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide  ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
 
-					<section>
-						<h3>Find the Next Position</h3>
-						<ul class="series">
-							<br>
-							<li>Position<sub>Next</sub> = Position<sub>Now</sub> + Shift<sub>Now</sub></li>
-							<li class="fragment">Position<sub>n+1</sub> = Position<sub>n</sub> + <span class="fragment highlight-blue">Shift<sub>n</sub></span></li>
-					</ul>
-				</section>
 
-				<section>
-					<h3>Find the Amount to Shift</h3>
-					<ul class="series">
-						<br>
-						<li>Shift<sub>Next</sub> = </li>
-						<li>K<sub>Pull</sub> &times Pull<sub>Now</sub> <span class="fragment fade-out">+ Shift<sub>Now</sub> - K<sub>decay</sub> &times Shift<sub>Now</sub></li></span>
-				</ul>
-			</section>
+
+
 
 			<!-- <section>
 				<h3>Find the Amount to Shift</h3>
@@ -191,34 +150,32 @@
 			</section> -->
 
 				<section>
-					<h3>Find the Amount to Shift</h3>
+					<h3>Shift Feedback</h3>
 					<ul class="series">
 
-						<span><li>Shift - K<sub>decay</sub> &times Shift</li></span>
-						<span class="fragment"><li>Shift (1 - K<sub>decay)</li></span>
-						<span class="fragment"><li>Shift &times 97%</li></span>
-						<span class="fragment"><li>(((Shift &times 97%) 97% ) 97%)</li></span>
-
+						<li>Shift - K<sub>decay</sub> &times Shift</li>
+						<li>Shift (1 - K<sub>decay)</li>
+						<li>Shift &times 97%</li>
 					</ul>
 				</section>
 
 				<section>
-					<h3>Find the Amount to Shift</h3>
+					<h3>Shift Feedback</h3>
 					<ul class="series">
-
-						<span><li>Shift - K<sub>decay</sub> &times Shift</li></span>
-						<span><li>Shift (1 - K<sub>decay)</li></span>
-						<span><li>Shift &times 97%</li></span>
-						<span><li>(((Shift &times 97%) 97% ) 97%)</li></span>
-						<span><li>Shift &times 97% <sup>120</sup> = 3% </li></span>
+						<li>Shift - K<sub>decay</sub> &times Shift</li>
+						<li>Shift (1 - K<sub>decay)</li>
+						<li>Shift &times 97%</li>
+						<li>(((Shift &times 97%) 97% ) 97%)</li>
+						<li>Shift &times 97% <sup>120</sup> = 3% </li>
 					</ul>
 					<canvas id="decay"></canvas>
-					<script src="decay_illustration.js" charset="utf-8"></script>
+					
 				</section>
+				<script src="decay_illustration.js"></script>
 
 
 				<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Slide 5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
-				<section>
+				<section id="one">
 					<div id="canvases" class="controlvariables">
 						<div>
 							<h3>One Point Moving</h3>
@@ -282,14 +239,7 @@
 			});
 		</script>
 
-		<script>
-			var textarea = document.getElementsByTagName('textarea')[0]
-			var audienceList = document.getElementById('audienceList')
-			textarea.addEventListener('keyup', function(){
-				document.getElementById('audienceList').innerHTML = textarea.value
-			})
-			//document.getElementById('audienceList').innerHTML = textarea
-		</script>
+
 
 	</body>
 </html>

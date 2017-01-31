@@ -79,11 +79,11 @@ Part.prototype.frame = function frame() {
   if (mouseDown) {
     var dx = this.x - mouseX;
     var dy = this.y - mouseY;
-    var ɋ = Math.sqrt(dx * dx + dy * dy);
-    if (ɋ < 100) {
-      ɋ = ɋ < 10 ? 10 : ɋ;
-      this.x -= dx / ɋ * 5;
-      this.y -= dy / ɋ * 5;
+    var distance = Math.sqrt(dx * dx + dy * dy);
+    if (distance < 100) {
+      distance = distance < 10 ? 10 : distance;
+      this.x -= dx / distance * 5;
+      this.y -= dy / distance * 5;
     }
   }
 };
