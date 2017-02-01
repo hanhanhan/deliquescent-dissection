@@ -18,7 +18,7 @@
   c.width = window.innerWidth;
   c.height = window.innerHeight;
 
-  var gnum = 90; //num grids / frame
+  var gnum = 40; //num grids / frame
   var _x = 2265; //x width (canvas width)
   var _y = 1465; //y height (canvas height)
   var w = _x / gnum; //grid sq width

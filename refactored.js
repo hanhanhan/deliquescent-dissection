@@ -14,8 +14,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
  //y height (canvas height)
-const w = 15; //grid sq width
-const h = 15; //grid sq height
+const w = 30; //grid sq width
+const h = 30; //grid sq height
 
 var rows = Math.floor(canvas.height/w); //number of rows
 var columns = Math.floor(canvas.width/w); //number of columns
